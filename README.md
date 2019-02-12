@@ -1,88 +1,115 @@
-
 # nservicebusservicepulse
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
-
-The README template below provides a starting point with details about what information to include in your README.
+[![Puppet Forge Version](http://img.shields.io/puppetforge/v/tragiccode/nservicebusservicepulse.svg)](https://forge.puppetlabs.com/tragiccode/nservicebusservicepulse)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/tragiccode/nservicebusservicepulse.svg)](https://forge.puppetlabs.com/tragiccode/nservicebusservicepulse)
+[![Puppet Forge Pdk Version](http://img.shields.io/puppetforge/pdk-version/tragiccode/nservicebusservicepulse.svg)](https://forge.puppetlabs.com/tragiccode/nservicebusservicepulse)
 
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup - The basics of getting started with nservicebusservicepulse](#setup)
-    * [What nservicebusservicepulse affects](#what-nservicebusservicepulse-affects)
-    * [Setup requirements](#setup-requirements)
+1. [Setup requirements](#setup-requirements)
     * [Beginning with nservicebusservicepulse](#beginning-with-nservicebusservicepulse)
-3. [Usage - Configuration options and additional functionality](#usage)
-4. [Limitations - OS compatibility, etc.](#limitations)
-5. [Development - Guide for contributing to the module](#development)
+1. [Usage - Configuration options and additional functionality](#usage)
+1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+1. [Limitations - OS compatibility, etc.](#limitations)
+1. [Contributing](#contributing)
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
+The nservicebusservicepulse module installs and manages Service Pulse.
 
-This should be a fairly short description helps the user decide if your module is what they want.
+ServicePulse is a web application aimed mainly at administrators. It gives a clear, near real-time, high-level overview of how a system is functioning.
 
-## Setup
+### Setup Requirements
 
-### What nservicebusservicepulse affects **OPTIONAL**
+The nservicebusservicepulse module requires the following:
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+* Puppet Agent 4.7.1 or later.
+* Access to the internet.
+* Chocolatey installed.
+* A Running instance of Service Control.
+* Windows Server 2012/2012R2/2016.
 
 ### Beginning with nservicebusservicepulse
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
+To get started with the nservicebusservicepulse module simply include the following in your manifest:
+
+```puppet
+class { 'nservicebusservicepulse':
+  package_ensure      => 'present',
+  service_control_url => 'http://servicecontrol.tragiccode.com:33333/api/',
+}
+```
+
+This example downloads, installs, and configures the latest version of servicepulse and points it to an instance of service control on a remote machine.  After running this you should be able to access servicepulse from http://localhost:9090.
+
+**NOTE: By default this module pulls the package from chocolatey (https://chocolatey.org/packages/servicepulse)**
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
+All parameters for the nservicebusservicepulse module are contained within the main `nservicebusservicepulse` class, so for any function of the module, set the options you want. See the common usages below for examples.
+
+### Install a specific version of service pulse from chocolatey
+
+```puppet
+class { 'nservicebusservicepulse':
+  package_ensure      => '1.16.0',
+  service_control_url => 'http://localhost:33333/api/',
+}
+```
+
+**NOTE: We recommend always specifying a specific version so that it's easily viewable and explicit in code.  The default value is present which just grabs whatever version happens to be the latest at the time your first puppet run happened with this code**
+
+### Change Service Pulse Port
+
+The Default port for servicepulse is 9090 but can be customized as shown below if needed.
+
+```puppet
+class { 'nservicebusservicepulse':
+  package_ensure => 'present',
+  port           => 9091,
+}
+```
+
+### Display of Real-time Monitoring
+
+In order to consume real-time monitoring of logical endpoints by displaying various key metrics ( Critical Time, Processing Time, Throughput, Queue Length, etc.. ) simply point servicepulse to the url of your service control monitoring instance.
+
+```puppet
+class { 'nservicebusservicepulse':
+  package_ensure      => 'present',
+  service_control_url => 'http://servicecontrol.tragiccode.com:33333/api/',
+  monitoring_url      => 'http://servicecontrol.tragiccode.com:33633/',
+}
+```
+
+### Enable pending retries view
+
+```puppet
+class { 'nservicebusservicepulse':
+  package_ensure     => 'present',
+  show_pending_retry => true,
+}
+```
+
+**NOTE: Failed messages that are currently in the pending status can be retried, however this feature should be used with care. Retrying pending messages can cause the same message to be processed multiple times. Do not retry a message if it has been processed by the endpoint. In this context "processed" includes both the successful handling of the message and the failure state of it being sent to the error queue**
 
 ## Reference
 
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
-
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
-
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
-```
+See [REFERENCE.md](REFERENCE.md)
 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+### IIS Hosting Currently not implemented
 
-## Development
+Currently hosting service pulse within IIS is currently not implemented and the only supported configuration is hosting via a Windows Service.
 
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
+This also means that the ability to have multiple instances of servicepulse on a single machine is also not possible.
 
-## Release Notes/Contributors/Etc. **Optional**
+## Contributing
 
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+1. Fork it ( https://github.com/tragiccode/tragiccode-nservicebusservicepulse/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request

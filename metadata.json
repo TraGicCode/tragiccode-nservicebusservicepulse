@@ -2,18 +2,31 @@
   "name": "tragiccode-nservicebusservicepulse",
   "version": "0.1.0",
   "author": "tragiccode",
-  "summary": "",
+  "summary": "The `nservicebusservicepulse` module installs and manages the NServiceBus Service Pulse on Windows systems.",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/TraGicCode/tragiccode-nservicebusservicepulse",
+  "project_page": "https://github.com/TraGicCode/tragiccode-nservicebusservicepulse",
+  "issues_url": "https://github.com/TraGicCode/tragiccode-nservicebusservicepulse/issues",
   "dependencies": [
-
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.0.0 < 6.0.0"
+    },
+    {
+      "name": "puppetlabs/chocolatey",
+      "version_requirement": ">= 3.0.0 < 4.0.0"
+    },
+    {
+      "name": "puppetlabs/registry",
+      "version_requirement": ">= 1.0.0 < 3.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "windows",
       "operatingsystemrelease": [
-        "2008 R2",
         "2012 R2",
+        "2016",
         "10"
       ]
     }
@@ -24,7 +37,7 @@
       "version_requirement": ">= 4.10.0 < 7.0.0"
     }
   ],
-  "pdk-version": "1.9.0",
-  "template-url": "file://C:/Program Files/Puppet Labs/DevelopmentKit/share/cache/pdk-templates.git",
-  "template-ref": "1.9.0-0-g7281db5"
+  "pdk-version": "1.9.1",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.9.1-0-g6945d31"
 }
