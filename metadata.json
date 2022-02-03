@@ -1,6 +1,6 @@
 {
   "name": "tragiccode-nservicebusservicepulse",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "tragiccode",
   "summary": "The `nservicebusservicepulse` module installs and manages the NServiceBus Service Pulse on Windows systems.",
   "license": "Apache-2.0",
