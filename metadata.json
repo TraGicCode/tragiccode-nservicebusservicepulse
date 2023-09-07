@@ -10,15 +10,15 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.0.0 < 9.0.0"
+      "version_requirement": ">= 4.0.0 < 10.0.0"
     },
     {
       "name": "puppetlabs/chocolatey",
-      "version_requirement": ">= 3.0.0 < 7.0.0"
+      "version_requirement": ">= 3.0.0 < 9.0.0"
     },
     {
       "name": "puppetlabs/registry",
-      "version_requirement": ">= 1.0.0 < 5.0.0"
+      "version_requirement": ">= 1.0.0 < 6.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -29,6 +29,7 @@
         "2012 R2",
         "2016",
         "2019",
+        "2022",
         "10"
       ]
     }
@@ -36,7 +37,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10.0 < 8.0.0"
+      "version_requirement": ">= 4.10.0 < 9.0.0"
     }
   ],
   "pdk-version": "2.3.0",
