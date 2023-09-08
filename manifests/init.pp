@@ -32,20 +32,19 @@
 #
 # @param show_pending_retry
 #   Whether to show retries that are currently in pending in servicepulse.
-class nservicebusservicepulse(
+class nservicebusservicepulse (
   String $package_ensure                             = $nservicebusservicepulse::params::package_ensure,
   Boolean $package_manage                            = $nservicebusservicepulse::params::package_manage,
   Optional[String] $package_source                   = $nservicebusservicepulse::params::package_source,
   String $package_provider                           = $nservicebusservicepulse::params::package_provider,
   Boolean $service_manage                            = $nservicebusservicepulse::params::service_manage,
   Enum['running', 'stopped'] $service_ensure         = $nservicebusservicepulse::params::service_ensure,
-  Variant[ Boolean, Enum['manual'] ] $service_enable = $nservicebusservicepulse::params::service_enable,
+  Variant[Boolean, Enum['manual']] $service_enable = $nservicebusservicepulse::params::service_enable,
   Stdlib::Port $port                                 = $nservicebusservicepulse::params::port,
   Stdlib::Httpurl $service_control_url               = $nservicebusservicepulse::params::service_control_url,
   Stdlib::Httpurl $monitoring_url                    = $nservicebusservicepulse::params::monitoring_url,
   Boolean $show_pending_retry                        = $nservicebusservicepulse::params::show_pending_retry,
 ) inherits nservicebusservicepulse::params {
-
   contain nservicebusservicepulse::install
   contain nservicebusservicepulse::config
   contain nservicebusservicepulse::service

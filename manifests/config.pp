@@ -3,7 +3,7 @@
 #
 # @api private
 #
-class nservicebusservicepulse::config(
+class nservicebusservicepulse::config (
   String $package_ensure               = $nservicebusservicepulse::params::package_ensure,
   Boolean $package_manage              = $nservicebusservicepulse::params::package_manage,
   Boolean $service_manage              = $nservicebusservicepulse::params::service_manage,
@@ -12,7 +12,6 @@ class nservicebusservicepulse::config(
   Stdlib::Httpurl $monitoring_url      = $nservicebusservicepulse::params::monitoring_url,
   Boolean $show_pending_retry          = $nservicebusservicepulse::params::show_pending_retry,
 ) inherits nservicebusservicepulse::params {
-
   if $service_manage {
     $imagepath_ensure = $package_ensure ? {
       'absent' => 'absent',
@@ -22,7 +21,7 @@ class nservicebusservicepulse::config(
     registry_value { 'HKLM\System\CurrentControlSet\Services\Particular.ServicePulse\ImagePath':
       ensure => $imagepath_ensure,
       type   => expand,
-      data   =>  "\"C:\\Program Files (x86)\\Particular Software\\ServicePulse\\ServicePulse.Host.exe\" --url=\"http://localhost:${port}\"",
+      data   => "\"C:\\Program Files (x86)\\Particular Software\\ServicePulse\\ServicePulse.Host.exe\" --url=\"http://localhost:${port}\"",
     }
   }
 
