@@ -27,19 +27,19 @@ Installs and configures Particular's Service Pulse Monitoring Tool.
 
 The following parameters are available in the `nservicebusservicepulse` class:
 
-* [`package_ensure`](#package_ensure)
-* [`package_manage`](#package_manage)
-* [`package_source`](#package_source)
-* [`package_provider`](#package_provider)
-* [`service_manage`](#service_manage)
-* [`service_ensure`](#service_ensure)
-* [`service_enable`](#service_enable)
-* [`port`](#port)
-* [`service_control_url`](#service_control_url)
-* [`monitoring_url`](#monitoring_url)
-* [`show_pending_retry`](#show_pending_retry)
+* [`package_ensure`](#-nservicebusservicepulse--package_ensure)
+* [`package_manage`](#-nservicebusservicepulse--package_manage)
+* [`package_source`](#-nservicebusservicepulse--package_source)
+* [`package_provider`](#-nservicebusservicepulse--package_provider)
+* [`service_manage`](#-nservicebusservicepulse--service_manage)
+* [`service_ensure`](#-nservicebusservicepulse--service_ensure)
+* [`service_enable`](#-nservicebusservicepulse--service_enable)
+* [`port`](#-nservicebusservicepulse--port)
+* [`service_control_url`](#-nservicebusservicepulse--service_control_url)
+* [`monitoring_url`](#-nservicebusservicepulse--monitoring_url)
+* [`show_pending_retry`](#-nservicebusservicepulse--show_pending_retry)
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-nservicebusservicepulse--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
@@ -47,7 +47,7 @@ Whether to install the ServicePulse package.
 
 Default value: `$nservicebusservicepulse::params::package_ensure`
 
-##### <a name="package_manage"></a>`package_manage`
+##### <a name="-nservicebusservicepulse--package_manage"></a>`package_manage`
 
 Data type: `Boolean`
 
@@ -55,7 +55,7 @@ Whether to manage the ServicePulse package.
 
 Default value: `$nservicebusservicepulse::params::package_manage`
 
-##### <a name="package_source"></a>`package_source`
+##### <a name="-nservicebusservicepulse--package_source"></a>`package_source`
 
 Data type: `Optional[String]`
 
@@ -63,7 +63,7 @@ Where to find the package file.
 
 Default value: `$nservicebusservicepulse::params::package_source`
 
-##### <a name="package_provider"></a>`package_provider`
+##### <a name="-nservicebusservicepulse--package_provider"></a>`package_provider`
 
 Data type: `String`
 
@@ -71,7 +71,7 @@ The package provider that should be used.
 
 Default value: `$nservicebusservicepulse::params::package_provider`
 
-##### <a name="service_manage"></a>`service_manage`
+##### <a name="-nservicebusservicepulse--service_manage"></a>`service_manage`
 
 Data type: `Boolean`
 
@@ -79,7 +79,7 @@ Specifies whether or not to manage the desired state of the windows service.
 
 Default value: `$nservicebusservicepulse::params::service_manage`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-nservicebusservicepulse--service_ensure"></a>`service_ensure`
 
 Data type: `Enum['running', 'stopped']`
 
@@ -87,7 +87,7 @@ Specifies the state of the service.
 
 Default value: `$nservicebusservicepulse::params::service_ensure`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-nservicebusservicepulse--service_enable"></a>`service_enable`
 
 Data type: `Variant[ Boolean, Enum['manual'] ]`
 
@@ -95,7 +95,7 @@ Whether to enable the service.
 
 Default value: `$nservicebusservicepulse::params::service_enable`
 
-##### <a name="port"></a>`port`
+##### <a name="-nservicebusservicepulse--port"></a>`port`
 
 Data type: `Stdlib::Port`
 
@@ -103,7 +103,7 @@ Specify the port number to listen on. 9090 is recommended if no conflicts exist.
 
 Default value: `$nservicebusservicepulse::params::port`
 
-##### <a name="service_control_url"></a>`service_control_url`
+##### <a name="-nservicebusservicepulse--service_control_url"></a>`service_control_url`
 
 Data type: `Stdlib::Httpurl`
 
@@ -111,7 +111,7 @@ Specify the url for the servicecontrol instance api.
 
 Default value: `$nservicebusservicepulse::params::service_control_url`
 
-##### <a name="monitoring_url"></a>`monitoring_url`
+##### <a name="-nservicebusservicepulse--monitoring_url"></a>`monitoring_url`
 
 Data type: `Stdlib::Httpurl`
 
@@ -119,7 +119,7 @@ Specify the url for the servicecontrol monitoring instance api.
 
 Default value: `$nservicebusservicepulse::params::monitoring_url`
 
-##### <a name="show_pending_retry"></a>`show_pending_retry`
+##### <a name="-nservicebusservicepulse--show_pending_retry"></a>`show_pending_retry`
 
 Data type: `Boolean`
 

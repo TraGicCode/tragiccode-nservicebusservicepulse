@@ -3,7 +3,7 @@
 #
 # @api private
 #
-class nservicebusservicepulse::install(
+class nservicebusservicepulse::install (
   String $package_ensure               = $nservicebusservicepulse::params::package_ensure,
   Boolean $package_manage              = $nservicebusservicepulse::params::package_manage,
   Optional[String] $package_source     = $nservicebusservicepulse::params::package_source,
@@ -12,7 +12,6 @@ class nservicebusservicepulse::install(
   Stdlib::Httpurl $service_control_url = $nservicebusservicepulse::params::service_control_url,
   Stdlib::Httpurl $monitoring_url      = $nservicebusservicepulse::params::monitoring_url,
 ) inherits nservicebusservicepulse::params {
-
   if $package_manage {
     package { 'servicepulse':
       ensure          => $package_ensure,
