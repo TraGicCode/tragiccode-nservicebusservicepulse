@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v0.3.0](https://github.com/tragiccode/tragiccode-nservicebusservicepulse/tree/v0.3.0) (2023-09-08)
+
+[Full Changelog](https://github.com/tragiccode/tragiccode-nservicebusservicepulse/compare/v0.2.0...v0.3.0)
+
+### Added
+
+- \(GH-13\) Update pdk templates [\#14](https://github.com/TraGicCode/tragiccode-nservicebusservicepulse/pull/14) ([TraGicCode](https://github.com/TraGicCode))
+- \(GH-11\) Add puppet 8 support [\#12](https://github.com/TraGicCode/tragiccode-nservicebusservicepulse/pull/12) ([TraGicCode](https://github.com/TraGicCode))
+
 ## [v0.2.0](https://github.com/tragiccode/tragiccode-nservicebusservicepulse/tree/v0.2.0) (2022-02-03)
 
 [Full Changelog](https://github.com/tragiccode/tragiccode-nservicebusservicepulse/compare/0.1.0...v0.2.0)

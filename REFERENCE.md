@@ -89,7 +89,7 @@ Default value: `$nservicebusservicepulse::params::service_ensure`
 
 ##### <a name="-nservicebusservicepulse--service_enable"></a>`service_enable`
 
-Data type: `Variant[ Boolean, Enum['manual'] ]`
+Data type: `Variant[Boolean, Enum['manual']]`
 
 Whether to enable the service.
 
