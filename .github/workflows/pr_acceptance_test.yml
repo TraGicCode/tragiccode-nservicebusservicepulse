@@ -1,0 +1,56 @@
+name: Acceptance Tests
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  run-tests:
+    name: "Acceptance Tests"
+    runs-on: windows-2025
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Ruby 3.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          bundler-cache: true
+
+      - name: Install puppet agent
+        shell: pwsh
+        run: |
+          choco install puppet-agent -y
+
+      - name: Install RabbitMQ
+        shell: pwsh
+        run: |
+          choco install rabbitmq -y
+
+      - name: Run Acceptance Tests
+        shell: pwsh
+        run: |
+          bundle exec rake spec_prep
+          $env:TARGET_HOST = 'localhost'
+          bundle exec rspec ./spec/acceptance
+  slack-workflow-status:
+    if: always()
+    name: Post Workflow Status To Slack
+    needs:
+      - run-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Workflow Notification
+        uses: Gamesight/slack-workflow-status@master
+        with:
+          # Required Input
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          # Optional Input
+          channel: '#ci-cd-notifications'
+          name: 'Github Action'
+          icon_url: 'https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_512.png'
